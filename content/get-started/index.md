@@ -49,10 +49,10 @@ __index.html__
 <html>
   <head>
     <title>Webpack demo</title>
-    <script src='https://unpkg.com/lodash@4.16.6' type='text/javascript'></script>
-    <script src='index.js' type='text/javascript'></script>
   </head>
   <body>
+      <script src='https://unpkg.com/lodash@4.16.6' type='text/javascript'></script>
+      <script src='index.js' type='text/javascript'></script>
   </body>
 </html>
 ```
@@ -82,12 +82,11 @@ Also we will need to change the `index.html` to expect a single bundled js file.
 <html>
   <head>
     <title>Webpack demo</title>
+  </head>
+  <body>
 -   <script src='https://unpkg.com/lodash@4.16.6' type='text/javascript'></script>
 -   <script src='index.js' type='text/javascript'></script>
 +   <script src='dist/bundle.js' type='text/javascript'></script>
-  </head>
-  <body>
-    <div id='root'></div>
   </body>
 </html>
 ```
@@ -112,7 +111,7 @@ index.js  1.56 kB       0  [emitted]  main
 
 ## Using webpack with a config
 
-For more complex configuration, we can use a configuration file that webpack can reference to bundle your code.
+For more complex configurations, we can use a configuration file that webpack can reference to bundle your code.
 The above CLI command would be represented in config as follows -
 
 __webpack.config.js__
@@ -159,7 +158,7 @@ Given it's not particularly fun to run webpack from the CLI this way, we can set
 
 You can now achieve the same as above by using `npm run build` command. npm picks up the scripts through it and patches the environment temporarily so that it contains the bin commands. You will see this convention a lot of projects out there.
 
-T> You can pass custom parameters to webpack by adding two dashes to the `npm run build` command, e.g. `npm run build -- --colors`.
+T> You can pass custom parameters to webpack by adding two dashes to the `npm run build` command, e.g. `npm run build --colors`.
 
 ## Conclusion
 

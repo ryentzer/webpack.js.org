@@ -2,13 +2,14 @@
 title: Get Started with Webpack
 contributors:
   - bebraw
+  - ryentzer
 sort: 3
 ---
 
 ## Getting Started
 
-webpack is a tool to build JavaScript modules in your application. To start using `webpack` from its [cli](/api/cli) or [api](/api/node), follow the [Installation instructions](/get-started/install-webpack).
-webpack simplifies your workflow by quickly constructing a dependency graph of your application and bundling them in the right order. webpack can be configured to customise optimisations to your code, to split vendor/css/js code for production, run a development server that hot-reloads your code without page refresh and many such cool features. Learn more about [why you should use webpack](/get-started/why-webpack).
+webpack is a tool to build JavaScript modules in your application. To start using `webpack` from its [CLI](/api/cli) or [API](/api/node), follow the [Installation instructions](/get-started/install-webpack).
+webpack simplifies your workflow by quickly constructing a dependency graph of your application and bundling them in the right order. webpack can be configured to customise optimisations to your code, split vendor/css/js code for production, run a development server that hot-reloads your code without a page refresh, and many more cool features. Learn more about [why you should use webpack](/get-started/why-webpack).
 
 ## Creating a bundle
 
@@ -49,10 +50,10 @@ __index.html__
 <html>
   <head>
     <title>Webpack demo</title>
-    <script src='https://unpkg.com/lodash@4.16.6' type='text/javascript'></script>
-    <script src='index.js' type='text/javascript'></script>
   </head>
   <body>
+    <script src='https://unpkg.com/lodash@4.16.6' type='text/javascript'></script>
+    <script src='index.js' type='text/javascript'></script>
   </body>
 </html>
 ```
@@ -82,19 +83,19 @@ Also we will need to change the `index.html` to expect a single bundled js file.
 <html>
   <head>
     <title>Webpack demo</title>
--   <script src='https://unpkg.com/lodash@4.16.6' type='text/javascript'></script>
--   <script src='index.js' type='text/javascript'></script>
-+   <script src='dist/bundle.js' type='text/javascript'></script>
   </head>
   <body>
     <div id='root'></div>
+-   <script src='https://unpkg.com/lodash@4.16.6' type='text/javascript'></script>
+-   <script src='index.js' type='text/javascript'></script>
++   <script src='dist/bundle.js' type='text/javascript'></script>
   </body>
 </html>
 ```
 
 Here, `index.js` explicitly requires `lodash` to be present, and binds it as `_` (no global scope pollution).
 
-By stating what dependencies a module needs, webpack can use this information to build a dependency graph. It then uses the graph to generate an optimized bundle where scripts will be executed in the correct order. Also unused dependencies will not be included in the bundle.
+By stating what dependencies a module needs, webpack can use this information to build a dependency graph. It then uses the graph to generate an optimized bundle where scripts will be executed in the correct order. Also, unused dependencies will not be included in the bundle.
 
 Now run `webpack` on this folder with the entry file to be `index.js` and to output a `bundle.js` file which bundles all the code required for the page.
 
@@ -112,8 +113,8 @@ index.js  1.56 kB       0  [emitted]  main
 
 ## Using webpack with a config
 
-For more complex configuration, we can use a configuration file that webpack can reference to bundle your code.
-The above CLI command would be represented in config as follows -
+For more complex configuration, we can use a configuration file that webpack can reference to bundle our code.
+The above CLI command would be represented in config as
 
 __webpack.config.js__
 ```javascript
@@ -139,9 +140,9 @@ index.js  1.56 kB       0  [emitted]  main
    [0] ./app/index.js 170 bytes {0} [built]
 
 ```
-T> If a `webpack.config.js` is present, `webpack` command picks it up by default.
+T> If a `webpack.config.js` is present, the `webpack` command picks it up by default.
 
-The config file allows for all the flexibility in using webpack. We can add loader rules, plugins, resolve options and many other enhancements to our bundles using this configuration file.
+The config file allows for extensive flexibility in using webpack. We can add loader rules, plugins, resolve options, and many other enhancements to our bundles using this configuration file.
 
 ## Using webpack with npm
 
@@ -157,11 +158,11 @@ Given it's not particularly fun to run webpack from the CLI this way, we can set
 }
 ```
 
-You can now achieve the same as above by using `npm run build` command. npm picks up the scripts through it and patches the environment temporarily so that it contains the bin commands. You will see this convention a lot of projects out there.
+We can now achieve the same as above by using `npm run build` command. npm picks up the scripts through it and patches the environment temporarily so that it contains the bin commands. You will see this convention a lot of projects out there.
 
-T> You can pass custom parameters to webpack by adding two dashes to the `npm run build` command, e.g. `npm run build -- --colors`.
+T> We can pass custom parameters to webpack by adding two dashes to the `npm run build` command, e.g. `npm run build --colors`.
 
 ## Conclusion
 
-Now that you have a basic build together, you should dig into the [basic concepts](/concepts) and [configuration](/configuration) of webpack to understand its design better. Check out also the [how to section](/how-to) in order to see how to resolve common problems. The [API](/api) section digs into lower level.
+Now that you have a basic build together, you should dig into the [basic concepts](/concepts) and [configuration](/configuration) of webpack to  better understand its design. Also, check out the [how to section](/how-to) in order to see how to resolve common problems. The [API](/api) section digs into webpack at a lower level.
 
